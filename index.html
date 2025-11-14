@@ -27,24 +27,27 @@
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .header h1 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 2em;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-size: 2.2em;
             font-weight: 700;
+            letter-spacing: -0.025em;
         }
 
         .header .subtitle {
-            color: #7f8c8d;
+            color: #6b7280;
             font-size: 1.1em;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: 400;
         }
 
         .stats {
@@ -177,49 +180,109 @@
         }
 
         .colaborador-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 12px;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
             background: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .colaborador-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            border-color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border-color: #e1e8ed;
         }
 
-        .colaborador-header {
+        .colaborador-compact {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
+            align-items: center;
+            min-height: 60px;
+        }
+
+        .colaborador-info {
+            flex: 1;
         }
 
         .colaborador-nome {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1a1a1a;
             margin-bottom: 4px;
+            line-height: 1.3;
         }
 
-        .colaborador-empresa {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .colaborador-subinfo {
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-top: 2px;
+        }
+
+        .colaborador-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .badge-empresa {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             color: white;
-            padding: 3px 8px;
-            border-radius: 15px;
-            font-size: 0.7em;
-            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
         }
 
-        .colaborador-status {
-            padding: 3px 8px;
-            border-radius: 15px;
-            font-size: 0.7em;
-            font-weight: 600;
+        .badge-status-ativo {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-status-inativo {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+        }
+
+        .colaborador-expanded {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f3f4f6;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .colaborador-card.expanded .colaborador-expanded {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .expansion-indicator {
+            color: #9ca3af;
+            font-size: 0.8em;
+            margin-top: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .colaborador-card.expanded .expansion-indicator {
+            opacity: 1;
         }
 
         .status-ativo {
@@ -234,25 +297,54 @@
 
         .colaborador-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        .detail-group {
+        .detail-section {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .detail-section-title {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .detail-row {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 4px 0;
         }
 
         .detail-label {
-            font-size: 0.8em;
-            color: #7f8c8d;
-            margin-bottom: 2px;
+            font-size: 0.85em;
+            color: #64748b;
+            font-weight: 500;
+            min-width: 120px;
         }
 
         .detail-value {
             font-weight: 600;
-            color: #2c3e50;
+            color: #1e293b;
             font-size: 0.9em;
+            text-align: right;
+            flex: 1;
         }
 
         .no-results {
@@ -294,13 +386,44 @@
                 font-size: 1.6em;
             }
 
-            .colaborador-header {
+            .colaborador-compact {
                 flex-direction: column;
-                gap: 8px;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .colaborador-badges {
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .badge {
+                font-size: 0.75em;
+                padding: 5px 10px;
             }
 
             .colaborador-details {
                 grid-template-columns: 1fr;
+            }
+
+            .detail-section {
+                padding: 12px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .detail-label {
+                min-width: auto;
+            }
+
+            .detail-value {
+                text-align: left;
+                width: 100%;
             }
 
             .stats {
@@ -6535,42 +6658,87 @@
 
             return `
                 <div class="colaborador-card" onclick="expandirCard(this)">
-                    <div class="colaborador-header">
-                        <div>
+                    <!-- Vista Compacta -->
+                    <div class="colaborador-compact">
+                        <div class="colaborador-info">
                             <div class="colaborador-nome">${nome}</div>
-                            <div style="color: #7f8c8d; font-size: 0.9em; margin-top: 3px;">
-                                Matrícula: <strong>${matricula}</strong> | Cargo: <strong>${cargo}</strong>
-                            </div>
+                            <div class="colaborador-subinfo">${cargo} • ${cidade}/${uf}</div>
                         </div>
-                        <div style="display: flex; gap: 8px; align-items: center;">
-                            <div class="colaborador-status ${statusClass}">${colaborador.Status || 'N/A'}</div>
-                            <div class="colaborador-empresa">${empresa}</div>
+                        <div class="colaborador-badges">
+                            <div class="badge badge-empresa">${empresa}</div>
+                            <div class="badge ${statusClass === 'status-ativo' ? 'badge-status-ativo' : 'badge-status-inativo'}">${colaborador.Status || 'N/A'}</div>
                         </div>
                     </div>
-                    <div class="colaborador-details">
-                        <div class="detail-group">
-                            <div class="detail-label">Localização</div>
-                            <div class="detail-value">${cidade} - ${uf}</div>
-                        </div>
-                        <div class="detail-group">
-                            <div class="detail-label">Cliente/Projeto</div>
-                            <div class="detail-value">${cliente}</div>
-                        </div>
-                        <div class="detail-group">
-                            <div class="detail-label">Projeto/Departamento</div>
-                            <div class="detail-value">${projeto}</div>
-                        </div>
-                        <div class="detail-group">
-                            <div class="detail-label">Salário/Renuneração</div>
-                            <div class="detail-value">${salario}</div>
-                        </div>
-                        <div class="detail-group">
-                            <div class="detail-label">Data de Admissão</div>
-                            <div class="detail-value">${admissao}</div>
-                        </div>
-                        <div class="detail-group">
-                            <div class="detail-label">Competência</div>
-                            <div class="detail-value">${colaborador.Competencia || 'N/A'}</div>
+                    
+                    <!-- Indicador de Expansão -->
+                    <div class="expansion-indicator">
+                        <span style="color: #9ca3af;">▼ Clique para ver detalhes</span>
+                    </div>
+                    
+                    <!-- Vista Expandida -->
+                    <div class="colaborador-expanded">
+                        <div class="colaborador-details">
+                            <div class="detail-section">
+                                <div class="detail-section-title">Informações Pessoais</div>
+                                <div class="detail-grid">
+                                    <div class="detail-row">
+                                        <div class="detail-label">Matrícula</div>
+                                        <div class="detail-value">${matricula}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Nome Completo</div>
+                                        <div class="detail-value">${nome}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Cargo</div>
+                                        <div class="detail-value">${cargo}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Localização</div>
+                                        <div class="detail-value">${cidade} - ${uf}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Status</div>
+                                        <div class="detail-value">${colaborador.Status || 'N/A'}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <div class="detail-section-title">Informações Profissionais</div>
+                                <div class="detail-grid">
+                                    <div class="detail-row">
+                                        <div class="detail-label">Empresa</div>
+                                        <div class="detail-value">${empresa}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Cliente</div>
+                                        <div class="detail-value">${cliente}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Projeto/Departamento</div>
+                                        <div class="detail-value">${projeto}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Competência</div>
+                                        <div class="detail-value">${colaborador.Competencia || 'N/A'}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <div class="detail-section-title">Informações Financeiras</div>
+                                <div class="detail-grid">
+                                    <div class="detail-row">
+                                        <div class="detail-label">Salário/Renuneração</div>
+                                        <div class="detail-value">${salario}</div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <div class="detail-label">Data de Admissão</div>
+                                        <div class="detail-value">${admissao}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -6579,6 +6747,19 @@
 
         function expandirCard(card) {
             card.classList.toggle('expanded');
+            
+            // Atualizar indicador visual
+            const indicator = card.querySelector('.expansion-indicator span');
+            if (card.classList.contains('expanded')) {
+                indicator.textContent = '▲ Clique para recolher';
+            } else {
+                indicator.textContent = '▼ Clique para ver detalhes';
+            }
+            
+            // Adicionar feedback visual sutil
+            card.style.transform = card.classList.contains('expanded') 
+                ? 'translateY(-3px) scale(1.01)' 
+                : 'translateY(-3px)';
         }
 
         function exportarCSV() {
